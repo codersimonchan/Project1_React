@@ -6,7 +6,8 @@ const CartContext = createContext({
   removeItem: (id) => {},
   clearCart: () => {},
 });
-// 定义 reducer 函数, reducer 函数接收当前状态和一个 action，并根据 action 的类型来更新状态
+
+// 定义 cartReducer 函数, reducer 函数接收当前状态和一个 action对象，并根据 action 的类型来更新状态
 function cartReducer(state, action) {
   if (action.type === 'ADD_ITEM') {
     const existingCartItemIndex = state.items.findIndex(
@@ -57,6 +58,7 @@ function cartReducer(state, action) {
   return state;
 }
 
+// 定义一个函数式组件CartContextProvider
 export function CartContextProvider({ children }) {
   // useReducer 接受两个参数：reducer 函数和初始状态值, 返回当前状态值和派发action的函数
   const [cart, dispatchCartAction] = useReducer(cartReducer, { items: [] });
@@ -81,7 +83,8 @@ export function CartContextProvider({ children }) {
   };
 
   //CartContext 是一个 React 上下文对象，而 cartContext 是一个普通的 JavaScript 对象，用于保存购物车的状态和操作方法。
-  //在这个例子中，cartContext 被包含在 CartContextProvider 组件中，并通过 CartContext.Provider 提供给整个应用程序使用。
+  //在这个例子中，cartContext 被包含在 CartContextProvider 组件中，并通过 CartContext.Provider 提供给其他组件使用。
+  //这样cartContext的value 就被包含在CartContext的上下文当中，供其他被包含的组件使用。
   return (
     <CartContext.Provider value={cartContext}>{children}</CartContext.Provider>
   );

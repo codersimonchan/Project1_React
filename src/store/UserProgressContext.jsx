@@ -9,6 +9,7 @@ const UserProgressContext = createContext({
 });
 
 export function UserProgressContextProvider({ children }) {
+  // 这里使用了state管理，另一个上下文使用了reducer进行管理状态，可以比较一下
   const [userProgress, setUserProgress] = useState('');
 
   function showCart() {

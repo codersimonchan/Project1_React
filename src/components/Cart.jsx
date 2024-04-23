@@ -28,6 +28,8 @@ export default function Cart() {
     <Modal
       className="cart"
       open={userProgressCtx.progress === 'cart'}
+      // 点击go to checkout 按钮的时候，progress从cart变为checkout，因为以上的open属性为false，因此会关闭cart
+      // 保证在如果我们去往结账界面上，不会再触发此函数关闭购物车，而是什么也不做》》》》》》》此处关闭不应该是清理函数导致的吗，为什么是浏览器触发onClose事件？episode 275》》》》》》》
       onClose={userProgressCtx.progress === 'cart' ? handleCloseCart : null}
     >
       <h2>Your Cart</h2>
