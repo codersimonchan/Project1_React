@@ -6,6 +6,7 @@ const requestConfig = {};
 // component function 不可以是async函数，因为React 不允许这么做
 export default function Meals() {
   const {
+    // 别名
     data: loadedMeals,
     isLoading,
     error,
